@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrinusTest.Models", "TrinusTest.Models\TrinusTest.Models.csproj", "{667D5739-2145-4475-9558-86E41422DC91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrinusTest", "TrinusTest\TrinusTest.csproj", "{1D5527BB-92BC-4AF2-ACEC-04C23910075E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{667D5739-2145-4475-9558-86E41422DC91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667D5739-2145-4475-9558-86E41422DC91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667D5739-2145-4475-9558-86E41422DC91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5527BB-92BC-4AF2-ACEC-04C23910075E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D5527BB-92BC-4AF2-ACEC-04C23910075E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D5527BB-92BC-4AF2-ACEC-04C23910075E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D5527BB-92BC-4AF2-ACEC-04C23910075E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
