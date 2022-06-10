@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TrinusTest"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="24">
+        <Frame NavigationUIVisibility="Hidden" Source="PeopleView.xaml"/>
 
     </Grid>
 </Window>

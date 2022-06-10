@@ -34,5 +34,9 @@ namespace TrinusTest.ViewModels
         private bool _isNewEntry;
         
         public bool IsNewEntry { get => _isNewEntry; set => Set(ref _isNewEntry, value); }
+
+        private bool _isEditing;
+
+        public bool IsEditing { get => _isEditing; set => Set(ref _isEditing, value); }
     }
 }
