@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrinusTest.Models.People
 {
-    internal class Person
+    public class Person
     {
         public string? Name { get; set; }
 
