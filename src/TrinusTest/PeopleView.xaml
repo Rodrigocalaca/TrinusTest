@@ -10,15 +10,27 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
+            <TextBlock>Nome</TextBlock>
+            <TextBox Height="24" Width="500" HorizontalAlignment="Left" Margin="0,0,8,0"></TextBox>
+            <TextBlock Grid.Column="1" Margin="8,0,8,0" Width="64">Idade</TextBlock>
+            <TextBox Height="24" Grid.Column="1" Margin="8,0,8,0"></TextBox>
+            <TextBlock Grid.Column="2" Margin="8,0,8,0">CPF</TextBlock>
+            <TextBox Height="24" Grid.Column="2" Margin="8,0,8,0" Width="128"></TextBox>
+            <Button Height="24" Grid.Column="3" Margin="8,0,8,0" Width="79">Registrar</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock>Usuários</TextBlock>
+            
         </Grid>
     </Grid>
 </Page>
