@@ -8,29 +8,47 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PeopleView">
 
-    <Grid>
+    <Grid DataContext="{StaticResource mainViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock>Nome</TextBlock>
-            <TextBox Height="24" Width="500" HorizontalAlignment="Left" Margin="0,0,8,0"></TextBox>
-            <TextBlock Grid.Column="1" Margin="8,0,8,0" Width="64">Idade</TextBlock>
-            <TextBox Height="24" Grid.Column="1" Margin="8,0,8,0"></TextBox>
-            <TextBlock Grid.Column="2" Margin="8,0,8,0">CPF</TextBlock>
-            <TextBox Height="24" Grid.Column="2" Margin="8,0,8,0" Width="128"></TextBox>
-            <Button Height="24" Grid.Column="3" Margin="8,0,8,0" Width="79">Registrar</Button>
+            <StackPanel Grid.Column="0">
+                <TextBlock>Nome</TextBlock>
+                <TextBox Height="24" MinWidth="128" Margin="0,4,8,0" Text="{Binding CurrentUser.Name}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Grid.Column="1" Margin="8,0,8,0">Idade</TextBlock>
+                <TextBox Height="24" Width="64" Grid.Column="1" Margin="8,4,8,0" Text="{Binding CurrentUser.Age}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <TextBlock Grid.Column="2" Margin="8,0,8,0">CPF</TextBlock>
+                <TextBox Height="24" Width="128" Grid.Column="2" Margin="8,4,8,0" Text="{Binding CurrentUser.Ssn}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Margin="0,20,0,0">
+                <Button Height="24" Grid.Column="3" Margin="8,0,0,0" Width="79"  Command="{Binding RegisterCommand}">Registrar</Button>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <TextBlock>Usuários</TextBlock>
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">Usuários</TextBlock>
+            <DataGrid Grid.Row="1" Name="dataGridUsuarios" AutoGenerateColumns="False" Margin="0,4,0,0" ItemsSource="{Binding Users}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Nome" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Width="64" Header="Idade" Binding="{Binding Age}"/>
+                    <DataGridTextColumn Width="128" Header="CPF" Binding="{Binding Ssn}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Page>
