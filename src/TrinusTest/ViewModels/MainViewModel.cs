@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TSOriginação;
 
@@ -14,6 +16,8 @@ namespace TrinusTest.ViewModels
         public ICommand? EditCommand { get; set; }
 
         public ICommand? DeleteCommand { get; set; }
+
+        public string? ActionLabel { get { return CurrentUser!.IsEditing ? "Confirmar" : "Registrar"; } }
 
         private PersonViewModel? _currentUser;
 
@@ -48,12 +52,14 @@ namespace TrinusTest.ViewModels
                     CurrentUser = new PersonViewModel();
                 }
             }
+            OnPropertyChanged(nameof(ActionLabel));
         }
 
         public void Edit(PersonViewModel person)
         {
             CurrentUser = person;
             CurrentUser.IsEditing = true;
+            OnPropertyChanged(nameof(ActionLabel));
         }
 
         public void Delete(PersonViewModel person)
