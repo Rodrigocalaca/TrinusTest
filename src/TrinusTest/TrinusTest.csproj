@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TrinusTest.Models\TrinusTest.Models.csproj" />
   </ItemGroup>
 
