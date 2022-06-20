@@ -25,7 +25,6 @@ namespace TrinusTest
         {
             obj.SetValue(CornerRadiusProperty, value);
         }
-
         
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(AttachedProperties), new PropertyMetadata(default(CornerRadius)));
@@ -96,19 +95,19 @@ namespace TrinusTest
 
 
         [AttachedPropertyBrowsableForType(typeof(Button))]
-        public static FontSize GetButtonFontSize(DependencyObject obj)
+        public static double GetButtonFontSize(DependencyObject obj)
         {
-            return (FontSize)obj.GetValue(ButtonFontSizeProperty);
+            return (double)obj.GetValue(ButtonFontSizeProperty);
         }
 
         [AttachedPropertyBrowsableForType(typeof(Button))]
-        public static void SetButtonFontSize(DependencyObject obj, FontSize value)
+        public static void SetButtonFontSize(DependencyObject obj, double value)
         {
             obj.SetValue(ButtonFontSizeProperty, value);
         }
 
         public static readonly DependencyProperty ButtonFontSizeProperty =
-            DependencyProperty.RegisterAttached("ButtonFontSize", typeof(FontSize), typeof(AttachedProperties), new PropertyMetadata(default(FontSize)));
+            DependencyProperty.RegisterAttached("ButtonFontSize", typeof(double), typeof(AttachedProperties), new PropertyMetadata(12.0));
 
 
         [AttachedPropertyBrowsableForType(typeof(Button))]
@@ -272,19 +271,19 @@ namespace TrinusTest
 
 
         [AttachedPropertyBrowsableForType(typeof(Button))]
-        public static Alignment GetButtonsAlignment(DependencyObject obj)
+        public static HorizontalAlignment GetButtonsAlignment(DependencyObject obj)
         {
-            return (Alignment)obj.GetValue(ButtonsAlignmentProperty);
+            return (HorizontalAlignment)obj.GetValue(ButtonsAlignmentProperty);
         }
 
         [AttachedPropertyBrowsableForType(typeof(Button))]
-        public static void SetButtonsAlignment(DependencyObject obj, Alignment value)
+        public static void SetButtonsAlignment(DependencyObject obj, HorizontalAlignment value)
         {
             obj.SetValue(ButtonsAlignmentProperty, value);
         }
 
         public static readonly DependencyProperty ButtonsAlignmentProperty =
-            DependencyProperty.RegisterAttached("ButtonsAligment", typeof(Alignment), typeof(AttachedProperties), new PropertyMetadata(default(Alignment)));
+            DependencyProperty.RegisterAttached("ButtonsAlignment", typeof(HorizontalAlignment), typeof(AttachedProperties), new PropertyMetadata(default(HorizontalAlignment)));
 
 
         [AttachedPropertyBrowsableForType(typeof(Button))]

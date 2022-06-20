@@ -9,6 +9,8 @@ namespace TrinusTest.ViewModels
 {
     public class PersonViewModel : BindableBase
     {
+        
+
         public Person? Model
         {
             get => _model;
@@ -59,6 +61,20 @@ namespace TrinusTest.ViewModels
                 }
             }
         }
+
+        public AgeIndentifier AgeIndentifier
+        {
+            get => Model!.AgeIndentifier;
+            set
+            {
+                if (Age <= 12) AgeIndentifier = AgeIndentifier.Child;
+                else if (Age > 12 && Age <= 18) AgeIndentifier = AgeIndentifier.Young;
+                else if (Age > 18 && Age <= 65) AgeIndentifier = AgeIndentifier.Adult;
+                else AgeIndentifier = AgeIndentifier.Old;
+                OnPropertyChanged();
+            }
+        }
+
         public PersonViewModel()
         {
             Model = new Person();
@@ -72,5 +88,6 @@ namespace TrinusTest.ViewModels
                 Model = person;
             }
         }
+
     }
 }

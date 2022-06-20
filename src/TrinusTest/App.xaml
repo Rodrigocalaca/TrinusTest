@@ -6,29 +6,48 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <vm:MainViewModel x:Key="mainViewModel"/>
-
-        <Color x:Key="White">
+        <Color x:Key="WhiteColor">
             #FFFFFF
         </Color>
-        <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+        <SolidColorBrush x:Key="White" Color="{StaticResource WhiteColor}"/>
 
-        <Color x:Key="Border">
+        <Color x:Key="BorderColor">
             #E5E5EA
         </Color>
-        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Border}"/>
+        <SolidColorBrush x:Key="Border" Color="{StaticResource BorderColor}"/>
+
+        <Color x:Key="FocusBorderColor">
+            #6941C6
+        </Color>
+        <SolidColorBrush x:Key="FocusBorder" Color="{StaticResource FocusBorderColor}"/>
+
+        <Color x:Key="MainForegroundColor">
+            #1D1D1F
+        </Color>
+        <SolidColorBrush x:Key="MainForeground" Color="{StaticResource MainForegroundColor}"/>
+
+        <Color x:Key="MouseHoverBorderColor">
+            #AEAEB2
+        </Color>
+        <SolidColorBrush x:Key="MouseHoverBorder" Color="{StaticResource MouseHoverBorderColor}"/>
+
+        <Color x:Key="PrimaryColor">#0078D4</Color>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
 
         <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="Background" Value="{StaticResource White}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
             <Setter Property="CaretBrush" Value="{StaticResource MainForeground}" />
-            <Setter Property="ContextMenu" Value="{DynamicResource TextBoxMetroContextMenu}" />
-            <Setter Property="local:AttachedProperties.FocusBorderBrush" Value="{StaticResource PrimaryBrush}" />
-            <Setter Property="local:AttachedProperties.MouseOverBorderBrush" Value="{StaticResource RegionBrushLighten1}" />
-            <Setter Property="local:AttachedProperties.FocusBackground" Value="{StaticResource ControlsLayerBrush}"/>
-            <Setter Property="local:AttachedProperties.MouseOverBackground" Value="{StaticResource ControlsLayerBrush}"/>
-            <Setter Property="local:AttachedProperties.CornerRadius" Value="3" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="local:AttachedProperties.FocusBorderBrush" Value="{StaticResource FocusBorder}" />
+            <Setter Property="local:AttachedProperties.MouseOverBorderBrush" Value="{StaticResource MouseHoverBorder}" />
+            <Setter Property="local:AttachedProperties.FocusBackground" Value="{StaticResource White}"/>
+            <Setter Property="local:AttachedProperties.MouseOverBackground" Value="{StaticResource White}"/>
+            <Setter Property="local:AttachedProperties.CornerRadius" Value="8" />
             <Setter Property="local:AttachedProperties.ButtonFontSize" Value="13" />
             <Setter Property="local:AttachedProperties.ButtonWidth" Value="22" />
+            <Setter Property="local:AttachedProperties.ButtonsAlignment" Value="Left"/>
             <Setter Property="local:AttachedProperties.IsMonitoring" Value="True" />
             <Setter Property="local:AttachedProperties.IsSpellCheckContextMenuEnabled" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
             <Setter Property="local:AttachedProperties.WatermarkWrapping" Value="{Binding RelativeSource={RelativeSource Self}, Path=TextWrapping, Mode=OneWay}" />
@@ -37,9 +56,12 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="{StaticResource MainForeground}" />
             <Setter Property="MinHeight" Value="32" />
-            <Setter Property="Padding" Value="3 1 3 0" />
-            <Setter Property="SelectionBrush" Value="{StaticResource PrimaryBrush}" />
-            <Setter Property="SelectionOpacity" Value="0.4"/>
+            <Setter Property="SelectionBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource PrimaryColor}" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="SelectionOpacity" Value="1"/>
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -70,20 +92,20 @@
                             </Storyboard>
                         </ControlTemplate.Resources>
                         <Grid>
-                            <AdornerDecorator x:Name="PART_WaitingForDataEffectAdornerDecorator" Visibility="Collapsed">
+                            <AdornerDecorator x:Name="PART_WaitingForDataEffectAdornerDecorator">
                                 <Border x:Name="PART_WaitingForDataEffectGrid"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="Transparent"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            Effect="{DynamicResource WaitingForDataEffect}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            Background="White"
+                                            BorderBrush="#E5E5EA"
+                                            BorderThickness="1"
+                                            CornerRadius="8"
+                                             />
                             </AdornerDecorator>
-                            <Border x:Name="Base" CornerRadius="{TemplateBinding local:AttachedProperties.CornerRadius}"
+                            <Border x:Name="Base" CornerRadius="8"
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="1"
+                                        BorderThickness="1"                                       
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            <Grid x:Name="PART_InnerGrid" Margin="2">
+                            <Grid x:Name="PART_InnerGrid" Margin="8 6 8 6" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition  Width="Auto" />
                                     <ColumnDefinition x:Name="TextColumn" Width="*" />
@@ -95,22 +117,22 @@
                                     <RowDefinition x:Name="ButtonRow" Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <Grid x:Name="PrefixHost" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0 4 0 0" Visibility="Collapsed">
+                                <Grid x:Name="PrefixHost" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0 0 0 0" Visibility="Collapsed">
                                     <TextBlock x:Name="Prefix" Text="{TemplateBinding local:AttachedProperties.Prefix}" FontSize="14"
-                                               Foreground="{StaticResource BaseGrayBrush6}" Margin="5 0 0 0"/>
+                                               Foreground="Black" Margin="0 0 0 0"/>
                                 </Grid>
 
                                 <ScrollViewer x:Name="PART_ContentHost"
                                           Grid.Row="1"
                                           Grid.Column="1"
-                                          Margin="2"
+                                          Margin="0"
                                           VerticalAlignment="Stretch"
-                                          BorderThickness="0"
+                                          BorderThickness="1"
                                           IsTabStop="False" />
                                 <TextBlock x:Name="PART_Message"
                                        Grid.Row="1"
                                        Grid.Column="1"
-                                       Margin="3 3 3 0"
+                                       Margin="3 0 3 0"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -121,14 +143,14 @@
                                        TextTrimming="{TemplateBinding local:AttachedProperties.WatermarkTrimming}"
                                        TextWrapping="{TemplateBinding local:AttachedProperties.WatermarkWrapping}"
                                        Visibility="Collapsed" />
-                                <Grid x:Name="SuffixHost"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Margin="-6 0 5 1" Visibility="Collapsed" VerticalAlignment="Center">
+                                <Grid x:Name="SuffixHost"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Margin="0 0 5 0" Visibility="Collapsed" VerticalAlignment="Center">
                                     <TextBlock x:Name="Suffix" Text="{TemplateBinding local:AttachedProperties.Suffix}" FontSize="14"
-                                               Foreground="{StaticResource BaseGrayBrush6}"/>
+                                               Foreground="Gray"/>
                                 </Grid>
                             </Grid>
                             <Border x:Name="DisabledVisualElement"
-                                        Background="{StaticResource BackgroundBrush}"
-                                        BorderBrush="{StaticResource RegionBrush}"
+                                        Background="#E5E5EA"
+                                        BorderBrush="Transparent"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         IsHitTestVisible="False"
                                         Opacity="0" CornerRadius="3"
@@ -136,12 +158,7 @@
                                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:AttachedProperties.DisabledVisualElementVisibility), Mode=OneWay}" />
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(local:AttachedProperties.ButtonsAlignment)}" Value="Left">
-                                <Setter TargetName="ButtonColumn" Property="Width" Value="*" />
-                                <Setter TargetName="PART_ContentHost" Property="Grid.Column" Value="1" />
-                                <Setter TargetName="PART_Message" Property="Grid.Column" Value="1" />
-                                <Setter TargetName="TextColumn" Property="Width" Value="Auto" />
-                            </DataTrigger>
+
 
                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
                                 <Setter TargetName="PART_Message" Property="Visibility" Value="Visible" />
@@ -178,19 +195,6 @@
                                 <Setter TargetName="PrefixHost" Property="Visibility" Value="Visible" />
                             </DataTrigger>
 
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
-                                    <Condition Binding="{Binding Path=(local:AttachedProperties.UseFloatingWatermark), RelativeSource={RelativeSource Self}}" Value="True" />
-                                    <Condition Binding="{Binding Path=(local:AttachedProperties.HasText), RelativeSource={RelativeSource Self}}" Value="True" />
-                                </MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource ShowFloatingMessageStoryboard}" />
-                                </MultiDataTrigger.EnterActions>
-                                <MultiDataTrigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource HideFloatingMessageStoryboard}" />
-                                </MultiDataTrigger.ExitActions>
-                            </MultiDataTrigger>
 
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
@@ -202,8 +206,8 @@
                             </MultiDataTrigger>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Base" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:AttachedProperties.MouseOverBorderBrush)}" />
-                                <Setter TargetName="Base" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:AttachedProperties.MouseOverBackground)}" />
+                                <Setter TargetName="Base" Property="BorderBrush" Value="#AEAEB2" />
+                                <Setter TargetName="Base" Property="Background" Value="White" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="DisabledVisualElement" Property="Opacity" Value="0.7" />
@@ -212,7 +216,7 @@
                                 <Setter TargetName="Base" Property="BorderBrush" 
                                             Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:AttachedProperties.FocusBorderBrush)}" />
                                 <Setter TargetName="Base" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:AttachedProperties.FocusBackground)}" />
-                                <Setter TargetName="Base" Property="BorderThickness" Value="0 0 0 2"/>
+                                <Setter TargetName="Base" Property="BorderThickness" Value="1"/>
                             </Trigger>
 
                             <MultiTrigger>
@@ -237,18 +241,8 @@
                                 </Trigger.ExitActions>
                             </Trigger>
 
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsVisible" Value="True" />
-                                    <Condition Property="local:AttachedProperties.IsWaitingForData" Value="True" />
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="PART_WaitingForDataEffectAdornerDecorator" Property="Visibility" Value="Visible" />
-                                <MultiTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource WaitingForDataStoryboard}" />
-                                </MultiTrigger.EnterActions>
-                            </MultiTrigger>
                             <Trigger Property="local:AttachedProperties.IsWaitingForData" Value="False">
-                                <Setter TargetName="PART_WaitingForDataEffectAdornerDecorator" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="PART_WaitingForDataEffectAdornerDecorator" Property="Visibility" Value="Visible" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

@@ -1,0 +1,82 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="ControlsLayerColor">#FF202941</Color>
+    <Color x:Key="MainForegroundColor">White</Color>
+    <Color x:Key="InverseForegroundColor">Black</Color>
+    <Color x:Key="UndergroundColor">#13192a</Color>
+    <Color x:Key="BackgroundColor">#161D31</Color>
+    <Color x:Key="RegionColorLighten1">#404B65</Color>
+    <Color x:Key="RegionColorLighten2">#5B657E</Color>
+    <Color x:Key="RegionColorLighten3">#757F96</Color>
+    <Color x:Key="RegionColor">#26314C</Color>
+    <Color x:Key="RegionColorDarken1">#1c253c</Color>
+    <Color x:Key="RegionColorDarken2">#192137</Color>
+    <Color x:Key="RegionColorDarken3">#181F34</Color>
+    <Color x:Key="PrimaryColor">#0078D4</Color>
+    <Color x:Key="PrimaryColorLighten1">#1D89DC</Color>
+    <Color x:Key="PrimaryColorLighten2">#3A9BE3</Color>
+    <Color x:Key="PrimaryColorLighten3">#58ACEB</Color>
+    <Color x:Key="PrimaryColorDarken1">#0068C3</Color>
+    <Color x:Key="PrimaryColorDarken2">#0058B2</Color>
+    <Color x:Key="PrimaryColorDarken3">#0048A1</Color>
+    <Color x:Key="RedColor">#ff3b30</Color>
+    <Color x:Key="OrangeColor">#ff7c00</Color>
+    <Color x:Key="YellowColor">#ffcc00</Color>
+    <Color x:Key="GreenColor">#34c759</Color>
+    <Color x:Key="GrassColor">#b2d235</Color>
+    <Color x:Key="BlueColor">#007aff</Color>
+    <Color x:Key="PurpleColor">#7D2AE8</Color>
+    <Color x:Key="LightPurpleColor">#A87FFF</Color>
+    <Color x:Key="MagentaColor">#E24486</Color>
+    <Color x:Key="BaseGrayColor10">#f2f2f7</Color>
+    <Color x:Key="BaseGrayColor9">#DEDFE5</Color>
+    <Color x:Key="BaseGrayColor8">#CACBD3</Color>
+    <Color x:Key="BaseGrayColor7">#B6B8C1</Color>
+    <Color x:Key="BaseGrayColor6">#A2A5AF</Color>
+    <Color x:Key="BaseGrayColor">#8E919D</Color>
+    <Color x:Key="BaseGrayColor5">#7A7E8B</Color>
+    <Color x:Key="BaseGrayColor4">#666A79</Color>
+    <Color x:Key="BaseGrayColor3">#525767</Color>
+    <Color x:Key="BaseGrayColor2">#3E4455</Color>
+    <Color x:Key="BaseGrayColor1">#2A3043</Color>
+    <SolidColorBrush x:Key="ControlsLayerBrush" Color="{StaticResource ControlsLayerColor}"/>
+    <SolidColorBrush x:Key="MainForeground" Color="{StaticResource MainForegroundColor}"/>
+    <SolidColorBrush x:Key="InverseForeground" Color="{StaticResource InverseForegroundColor}"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="UndergroundBrush" Color="{StaticResource UndergroundColor}"/>
+
+    <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}"/>
+    <SolidColorBrush x:Key="RegionBrushLighten1" Color="{StaticResource RegionColorLighten1}"/>
+    <SolidColorBrush x:Key="RegionBrushLighten2" Color="{StaticResource RegionColorLighten2}"/>
+    <SolidColorBrush x:Key="RegionBrushLighten3" Color="{StaticResource RegionColorLighten3}"/>
+    <SolidColorBrush x:Key="RegionBrushDarken1" Color="{StaticResource RegionColorDarken1}"/>
+    <SolidColorBrush x:Key="RegionBrushDarken2" Color="{StaticResource RegionColorDarken2}"/>
+    <SolidColorBrush x:Key="RegionBrushDarken3" Color="{StaticResource RegionColorDarken3}"/>
+    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource RedColor}"/>
+    <SolidColorBrush x:Key="OrangeBrush" Color="{StaticResource OrangeColor}"/>
+    <SolidColorBrush x:Key="YellowBrush" Color="{StaticResource YellowColor}"/>
+    <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource GreenColor}"/>
+    <SolidColorBrush x:Key="GrassBrush" Color="{StaticResource GrassColor}"/>
+    <SolidColorBrush x:Key="BlueBrush" Color="{StaticResource BlueColor}"/>
+    <SolidColorBrush x:Key="PurpleBrush" Color="{StaticResource PurpleColor}"/>
+    <SolidColorBrush x:Key="LightPurpleBrush" Color="{StaticResource LightPurpleColor}"/>
+    <SolidColorBrush x:Key="MagentaBrush" Color="{StaticResource MagentaColor}"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="PrimaryBrushLighten1" Color="{StaticResource PrimaryColorLighten1}"/>
+    <SolidColorBrush x:Key="PrimaryBrushLighten2" Color="{StaticResource PrimaryColorLighten2}"/>
+    <SolidColorBrush x:Key="PrimaryBrushLighten3" Color="{StaticResource PrimaryColorLighten3}"/>
+    <SolidColorBrush x:Key="PrimaryBrushDarken1" Color="{StaticResource PrimaryColorDarken1}"/>
+    <SolidColorBrush x:Key="PrimaryBrushDarken2" Color="{StaticResource PrimaryColorDarken2}"/>
+    <SolidColorBrush x:Key="PrimaryBrushDarken3" Color="{StaticResource PrimaryColorDarken3}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush1" Color="{StaticResource BaseGrayColor1}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush2" Color="{StaticResource BaseGrayColor2}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush3" Color="{StaticResource BaseGrayColor3}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush4" Color="{StaticResource BaseGrayColor4}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush5" Color="{StaticResource BaseGrayColor5}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush" Color="{StaticResource BaseGrayColor}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush6" Color="{StaticResource BaseGrayColor6}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush7" Color="{StaticResource BaseGrayColor7}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush8" Color="{StaticResource BaseGrayColor8}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush9" Color="{StaticResource BaseGrayColor9}"/>
+    <SolidColorBrush x:Key="BaseGrayBrush10" Color="{StaticResource BaseGrayColor10}"/>
+</ResourceDictionary>

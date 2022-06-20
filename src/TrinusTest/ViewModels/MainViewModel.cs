@@ -33,7 +33,9 @@ namespace TrinusTest.ViewModels
             RegisterCommand = new RelayCommand(Register);
             EditCommand = new RelayCommand<PersonViewModel>(Edit);
             DeleteCommand = new RelayCommand<PersonViewModel>(Delete);
-            Users.Add(new PersonViewModel { Name = "Rodrigo", Age = 21, Ssn = "10", IsNewEntry = false });
+            Users.Add(new PersonViewModel { Name = "Rodrigo", Age = 21, Ssn = "10",  IsNewEntry = false });
+            Users.Add(new PersonViewModel { Name = "Pietro", Age = 20, Ssn = "30", IsNewEntry = false });
+
         }
 
         public void Register()
@@ -43,8 +45,26 @@ namespace TrinusTest.ViewModels
                 if (CurrentUser.IsNewEntry)
                 {
                     Users.Add(CurrentUser);
+                    //string label;
+                    //if (CurrentUser.Age <= 12)
+                    //{
+                    //    label = "Criança";
+                    //}
+                    //else if (CurrentUser.Age <= 18 || CurrentUser.Age > 12)
+                    //{
+                    //    label = "Jovem";
+                    //}
+                    //else if(CurrentUser.Age <= 65 || CurrentUser.Age > 18)
+                    //{
+                    //    label = "Adulto";
+                    //}
+                    //else
+                    //{
+                    //    label = "Idoso";
+                    //}
                     CurrentUser.IsNewEntry = false;
                     CurrentUser = new PersonViewModel();
+                    
                 }
                 else if (CurrentUser.IsEditing)
                 {
