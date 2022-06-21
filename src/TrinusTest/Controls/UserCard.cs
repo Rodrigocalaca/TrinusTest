@@ -144,10 +144,6 @@ namespace TrinusTest.Controls
             DependencyProperty.Register(nameof(DeleteCommmandParameter), typeof(object), typeof(UserCard), new PropertyMetadata(null));
 
 
-        private event EventHandler<EventArgs> AgeIndentifierChanged;
-
-        internal void OnAgeIndentifierChanged() => AgeIndentifierChanged?.Invoke(this, EventArgs.Empty);
-
         public AgeIndentifier? AgeBadge
         {
             get { return (AgeIndentifier?)GetValue(AgeBadgeProperty); }

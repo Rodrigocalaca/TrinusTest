@@ -145,9 +145,8 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
+
     <Style TargetType="{x:Type c:UserCard}" x:Key="{x:Type c:UserCard}">
-        
         <Setter Property="Template" Value="{StaticResource defaultUserCardTemplate}"/>
     </Style>
 </ResourceDictionary>
