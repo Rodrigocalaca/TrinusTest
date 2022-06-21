@@ -45,6 +45,7 @@ namespace TrinusTest.ViewModels
                 {
                     Model!.Age = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(AgeIndentifier));
                 }
             }
         }
@@ -64,14 +65,24 @@ namespace TrinusTest.ViewModels
 
         public AgeIndentifier AgeIndentifier
         {
-            get => Model!.AgeIndentifier;
-            set
+            get
             {
-                if (Age <= 12) AgeIndentifier = AgeIndentifier.Child;
-                else if (Age > 12 && Age <= 18) AgeIndentifier = AgeIndentifier.Young;
-                else if (Age > 18 && Age <= 65) AgeIndentifier = AgeIndentifier.Adult;
-                else AgeIndentifier = AgeIndentifier.Old;
-                OnPropertyChanged();
+                if (Age <= 12)
+                {
+                   return AgeIndentifier.CHILD;
+                }
+                else if (Age > 12 && Age <= 18)
+                {
+                    return AgeIndentifier.YOUNG;
+                }
+                else if (Age > 18 && Age <= 65)
+                {
+                    return AgeIndentifier.ADULT;
+                }
+                else
+                {
+                    return AgeIndentifier.OLD;
+                }
             }
         }
 

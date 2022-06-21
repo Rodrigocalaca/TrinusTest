@@ -1,0 +1,153 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:TrinusTest.Controls"
+                    xmlns:enums="clr-namespace:TrinusTest.Models.People;assembly=TrinusTest.Models"
+                    xmlns:local="clr-namespace:TrinusTest">
+                    
+    <Style x:Key="AgeText" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#667085"/>
+        <Setter Property="LineHeight" Value="16"/>
+    </Style>
+    <Style x:Key="SsnText" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="LineHeight" Value="16"/>
+        <Setter Property="Foreground" Value="#667085"/>
+    </Style>
+    <Style x:Key="TextSubtitles" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="20"/>
+    </Style>
+    <Style x:Key="EditIcon" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="0 0 8 0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="IconEditBorder" Background="White" Padding="4" CornerRadius="4">
+                        <Path x:Name="IconEdit" Width="20" Height="20" Fill="#9E77ED"
+                              Data="M17.1813 2.92689C16.029 1.71505 14.1046 1.69077 12.9222 2.87317L3.54736 12.2475C3.21953 12.5754 2.99199 12.9899 2.89144 13.4424L2.01382 17.3923C1.97674 17.5592 2.0275 17.7335 2.1484 17.8544C2.26929 17.9753 2.44357 18.026 2.61046 17.9889L6.53685 17.1157C7.00428 17.0118 7.43238 16.7767 7.77098 16.4381L17.129 7.08003C18.27 5.939 18.2932 4.09631 17.1813 2.92689ZM13.6293 3.58029C14.4142 2.79538 15.6917 2.8115 16.4566 3.61596C17.1947 4.39225 17.1793 5.61548 16.4219 6.37293L15.7506 7.04418L12.958 4.25155L13.6293 3.58029ZM12.2509 4.95864L15.0435 7.7513L7.06387 15.731C6.85972 15.9352 6.6016 16.0769 6.31977 16.1396L3.16046 16.8421L3.86763 13.6593C3.92693 13.3924 4.06112 13.148 4.25445 12.9547L12.2509 4.95864Z"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="IconEditBorder" Property="Background" Value="#F2F4F7"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="IconEditBorder" Property="Background" Value="#EAECF0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DeleteIcon" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="0 0 2.5 0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="IconDeleteBorder" Background="White" Padding="4" CornerRadius="4">
+                        <Path x:Name="IconDelete" Width="20" Height="20" Fill="#F04438"
+                                  Data="M11.5 4C11.5 3.17157 10.8284 2.5 10 2.5C9.17157 2.5 8.5 3.17157 8.5 4H7.5C7.5 2.61929 8.61929 1.5 10 1.5C11.3807 1.5 12.5 2.61929 12.5 4H17C17.2761 4 17.5 4.22386 17.5 4.5C17.5 4.77614 17.2761 5 17 5H16.446L15.1499 16.2292C15.0335 17.2384 14.179 18 13.1631 18H6.83688C5.821 18 4.9665 17.2384 4.85006 16.2292L3.553 5H3C2.75454 5 2.55039 4.82312 2.50806 4.58988L2.5 4.5C2.5 4.22386 2.72386 4 3 4H11.5ZM15.438 5H4.561L5.84347 16.1146C5.90169 16.6192 6.32894 17 6.83688 17H13.1631C13.6711 17 14.0983 16.6192 14.1565 16.1146L15.438 5ZM8.5 7.5C8.74546 7.5 8.94961 7.65477 8.99194 7.85886L9 7.9375V14.0625C9 14.3041 8.77614 14.5 8.5 14.5C8.25454 14.5 8.05039 14.3452 8.00806 14.1411L8 14.0625V7.9375C8 7.69588 8.22386 7.5 8.5 7.5ZM11.5 7.5C11.7455 7.5 11.9496 7.65477 11.9919 7.85886L12 7.9375V14.0625C12 14.3041 11.7761 14.5 11.5 14.5C11.2545 14.5 11.0504 14.3452 11.0081 14.1411L11 14.0625V7.9375C11 7.69588 11.2239 7.5 11.5 7.5Z"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="IconDeleteBorder" Property="Background" Value="#F2F4F7"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="IconDeleteBorder" Property="Background" Value="#EAECF0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate TargetType="{x:Type c:UserCard}" x:Key="defaultUserCardTemplate">
+        <Border>
+            <Grid Margin="8 8 8 0">
+                <Border Background="#FFFFFF" Grid.ColumnSpan="2" CornerRadius="8" Padding="16" BorderBrush="#EAECF0" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="0 0 0 2">
+                            <Border Background="#F2F4F7" Width="24" Height="24" CornerRadius="12" Margin="0 0 8 0">
+                                <Path Width="24" Height="24" Fill="#B6B8C1" 
+                                                Data="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM7.00873 13C5.90315 13 5 13.8869 5 15C5 16.6912 5.83281 17.9663 7.13499 18.7966C8.41697 19.614 10.1453 20 12 20C13.8547 20 15.583 19.614 16.865 18.7966C18.1672 17.9663 19 16.6912 19 15C19 13.8956 18.1045 13 17 13L7.00873 13Z"/>
+                            </Border>
+                            <TextBlock
+                                            VerticalAlignment="Center"
+                                            Grid.Row="0"                   
+                                            Grid.Column="0"
+                                            Text="{TemplateBinding UserName}"
+                                            Style="{StaticResource TextSubtitles}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1">
+                            <TextBlock
+                                            Margin="0 0 0 4"
+                                            Grid.Column="1"
+                                            Text="{TemplateBinding UserAge}"
+                                            Style="{StaticResource AgeText}"/>
+                            <TextBlock Margin="0 0 0 0"
+                                            Grid.Column="2"
+                                            Text="{TemplateBinding UserSsn}"
+                                            Style="{StaticResource SsnText}"/>
+                        </StackPanel>
+                        <Border x:Name="borderBadge" HorizontalAlignment="Right" Height="16" CornerRadius="4">
+                            <TextBlock x:Name="textblockBadge">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                                        <Setter Property="FontSize" Value="10"/>
+                                        <Setter Property="LineHeight" Value="12"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Typography.Capitals" Value="AllPetiteCaps"/>
+                                        <Setter Property="Padding" Value="4 2 4 2"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                            <Button Command="{TemplateBinding EditCommand}" CommandParameter="{TemplateBinding EditCommmandParameter}" Style="{StaticResource EditIcon}"/>
+                            <Button Command="{TemplateBinding DeleteCommand}" CommandParameter="{TemplateBinding DeleteCommmandParameter}" Style="{StaticResource DeleteIcon}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="AgeBadge" Value="{x:Static enums:AgeIndentifier.CHILD}">
+                <Setter TargetName="textblockBadge" Property="Foreground" Value="#EE46BC"/>
+                <Setter TargetName="borderBadge" Property="Background" Value="#FDF2FA"/>
+            </Trigger>
+            <Trigger Property="AgeBadge" Value="{x:Static enums:AgeIndentifier.YOUNG}">
+                <Setter TargetName="textblockBadge" Property="Foreground" Value="#22CCEE"/>
+                <Setter TargetName="borderBadge" Property="Background" Value="#ECFDFF"/>
+            </Trigger>
+            <Trigger Property="AgeBadge" Value="{x:Static enums:AgeIndentifier.ADULT}">
+                <Setter TargetName="textblockBadge" Property="Foreground" Value="#FF4405"/>
+                <Setter TargetName="borderBadge" Property="Background" Value="#FFF4ED"/>
+            </Trigger>
+            <Trigger Property="AgeBadge" Value="{x:Static enums:AgeIndentifier.OLD}">
+                <Setter TargetName="textblockBadge" Property="Foreground" Value="#70707B"/>
+                <Setter  TargetName="borderBadge" Property="Background" Value="#F4F4F5"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type c:UserCard}" x:Key="{x:Type c:UserCard}">
+        
+        <Setter Property="Template" Value="{StaticResource defaultUserCardTemplate}"/>
+    </Style>
+</ResourceDictionary>

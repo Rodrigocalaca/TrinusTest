@@ -21,12 +21,12 @@ namespace TrinusTest.Models.People
     public enum AgeIndentifier
     {
         [Description("CRIANÇA")]
-        Child = 0,
+        CHILD = 0,
         [Description("JOVEM")]
-        Young,
+        YOUNG,
         [Description("ADULTO")]
-        Adult,
+        ADULT,
         [Description("IDOSO")]
-        Old
+        OLD
     }
 }
