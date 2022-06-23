@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,9 +37,12 @@ namespace TrinusTest.Controls
     ///
     /// </summary>
     [TemplatePart(Name = "textblockBadge", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "deleteButton", Type = typeof(Button))]
     public class UserCard : Control
     {
         private TextBlock? textblockBadge;
+
+        private Button? deleteButton;
 
         static UserCard()
         {
@@ -47,7 +51,21 @@ namespace TrinusTest.Controls
 
         public override void OnApplyTemplate()
         {
+            if (deleteButton != null)
+            {
+                deleteButton.Click -= DeleteButton_Click;
+            }
+
+
             var result = GetTemplateChild(nameof(textblockBadge));
+            var button = GetTemplateChild(nameof(deleteButton));
+
+            if(button != null)
+            {
+                deleteButton = button as Button;
+                deleteButton!.Click += DeleteButton_Click;
+            }
+
             if (result is not null && textblockBadge is null)
             {
                 textblockBadge = result as TextBlock;
@@ -74,6 +92,11 @@ namespace TrinusTest.Controls
             base.OnApplyTemplate();
         }
 
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(300);
+            DeleteCommand?.Execute(DeleteCommandParameter);
+        }
 
         public string UserName
         {
@@ -124,24 +147,24 @@ namespace TrinusTest.Controls
             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(UserCard), new PropertyMetadata(null));
 
 
-        public object EditCommmandParameter
+        public object EditCommandParameter
         {
-            get { return (object)GetValue(EditCommmandParameterProperty); }
-            set { SetValue(EditCommmandParameterProperty, value); }
+            get { return (object)GetValue(EditCommandParameterProperty); }
+            set { SetValue(EditCommandParameterProperty, value); }
         }
 
-        public static readonly DependencyProperty EditCommmandParameterProperty =
-            DependencyProperty.Register(nameof(EditCommmandParameter), typeof(object), typeof(UserCard), new PropertyMetadata(null));
+        public static readonly DependencyProperty EditCommandParameterProperty =
+            DependencyProperty.Register(nameof(EditCommandParameter), typeof(object), typeof(UserCard), new PropertyMetadata(null));
 
 
-        public object DeleteCommmandParameter
+        public object DeleteCommandParameter
         {
-            get { return (object)GetValue(DeleteCommmandParameterProperty); }
-            set { SetValue(DeleteCommmandParameterProperty, value); }
+            get { return (object)GetValue(DeleteCommandParameterProperty); }
+            set { SetValue(DeleteCommandParameterProperty, value); }
         }
 
-        public static readonly DependencyProperty DeleteCommmandParameterProperty =
-            DependencyProperty.Register(nameof(DeleteCommmandParameter), typeof(object), typeof(UserCard), new PropertyMetadata(null));
+        public static readonly DependencyProperty DeleteCommandParameterProperty =
+            DependencyProperty.Register(nameof(DeleteCommandParameter), typeof(object), typeof(UserCard), new PropertyMetadata(null));
 
 
         public AgeIndentifier? AgeBadge

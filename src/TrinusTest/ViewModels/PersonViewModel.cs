@@ -9,8 +9,6 @@ namespace TrinusTest.ViewModels
 {
     public class PersonViewModel : BindableBase
     {
-        
-
         public Person? Model
         {
             get => _model;
@@ -83,6 +81,26 @@ namespace TrinusTest.ViewModels
                 {
                     return AgeIndentifier.OLD;
                 }
+            }
+        }
+
+        protected override void OnValidation()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                ValidationErrors.Add(nameof(Name), "Preencha seu nome");
+            }
+            if (!Age.HasValue || Age < 0)
+            {
+                ValidationErrors.Add(nameof(Age), "Preencha sua idade corretamente");
+            }
+            if (string.IsNullOrEmpty(Ssn))
+            {
+                ValidationErrors.Add(nameof(Ssn), "Preencha seu CPF");
+            }
+            else if(!Ssn.IsValidCPF())
+            {
+                ValidationErrors.Add(nameof(Ssn), "Por favor insira um CPF válido");
             }
         }
 

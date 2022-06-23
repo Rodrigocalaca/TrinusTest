@@ -10,24 +10,53 @@
                 <ResourceDictionary Source="pack://application:,,,/TrinusTest;component/Controls/UserCardTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <Style TargetType="ToolTip">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToolTip">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
             <ControlTemplate x:Key="DefaultErrorTemplate">
-                <StackPanel>
-                    <!-- Placeholder for the TextBox itself -->
-                    <AdornedElementPlaceholder x:Name="placeHolder"/>
-                    <Grid Margin="0 2 0 0" Width="{Binding ElementName=placeHolder, Path=ActualWidth}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 0 0">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="14" Text="&#xF137;" Foreground="{StaticResource RedBrush}" Margin="1 1 0 0"/>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xF13C;" Foreground="White"/>
-                        </Grid>
-                        <TextBlock Grid.Column="1" Text="{Binding [0].ErrorContent}" Foreground="{StaticResource RedBrush}" FontSize="12" Margin="2 3 0 0" 
-                                               TextOptions.TextRenderingMode="Aliased" UseLayoutRounding="True" TextWrapping="Wrap" LineHeight="12" LineStackingStrategy="BlockLineHeight"/>
-                    </Grid>
+                <Grid>
+                    <Rectangle Stroke="Red" StrokeThickness="1" RadiusX="8" RadiusY="8"/>
 
-                </StackPanel>
+
+                    <Grid>
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder x:Name="placeHolder"/>
+                        <Grid Margin="0 0 0 0" Width="{Binding ElementName=placeHolder, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1 0 2 0" ToolTipService.InitialShowDelay="0">
+                                <Grid.ToolTip>
+                                    <ToolTip>
+                                        <Border Background="Red" CornerRadius="8">
+                                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="White" Margin="3 2 3 2">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                                                        <Setter Property="FontSize" Value="12"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+                                    </ToolTip>
+                                </Grid.ToolTip>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="14" Text="&#xF137;" Foreground="Red" Margin="1 1 4 0"/>
+
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xF13C;" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </ControlTemplate>
 
             <vm:MainViewModel x:Key="mainViewModel"/>

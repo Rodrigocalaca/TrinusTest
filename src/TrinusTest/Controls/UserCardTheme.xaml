@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:TrinusTest.Controls"
                     xmlns:enums="clr-namespace:TrinusTest.Models.People;assembly=TrinusTest.Models"
-                    xmlns:local="clr-namespace:TrinusTest">
+                    xmlns:local="clr-namespace:TrinusTest"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
                     
     <Style x:Key="AgeText" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="12"/>
@@ -74,7 +75,39 @@
     <ControlTemplate TargetType="{x:Type c:UserCard}" x:Key="defaultUserCardTemplate">
         <Border>
             <Grid Margin="8 8 8 0">
-                <Border Background="#FFFFFF" Grid.ColumnSpan="2" CornerRadius="8" Padding="16" BorderBrush="#EAECF0" BorderThickness="1">
+                <Border x:Name="Card" Opacity="0" Background="#FFFFFF" Grid.ColumnSpan="2" CornerRadius="8" Padding="16" BorderBrush="#EAECF0" BorderThickness="1" RenderTransformOrigin="0.5, 0.5">
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="TranslateTransform" X="0" Y="-100">
+
+                            </TranslateTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1">
+
+                            </ScaleTransform>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger SourceObject="{Binding ElementName=Card}" EventName="Loaded">
+                            <i:ControlStoryboardAction>
+                                <i:ControlStoryboardAction.Storyboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="TranslateTransform" Storyboard.TargetProperty="Y"
+                                                                     From="-100" To="0" Duration="00:00:00.300">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.Target="{Binding ElementName=Card}" Storyboard.TargetProperty="Opacity"
+                                                                     From="0" To="1" Duration="00:00:00.900">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </i:ControlStoryboardAction.Storyboard>
+                            </i:ControlStoryboardAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -119,8 +152,34 @@
                             </TextBlock>
                         </Border>
                         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
-                            <Button Command="{TemplateBinding EditCommand}" CommandParameter="{TemplateBinding EditCommmandParameter}" Style="{StaticResource EditIcon}"/>
-                            <Button Command="{TemplateBinding DeleteCommand}" CommandParameter="{TemplateBinding DeleteCommmandParameter}" Style="{StaticResource DeleteIcon}"/>
+                            <Button Command="{TemplateBinding EditCommand}" CommandParameter="{TemplateBinding EditCommandParameter}" Style="{StaticResource EditIcon}"/>
+                            <Button x:Name="deleteButton"  Style="{StaticResource DeleteIcon}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:ControlStoryboardAction>
+                                            <i:ControlStoryboardAction.Storyboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.Target="{Binding ElementName=Card}" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="00:00:00.300">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <PowerEase EasingMode="EaseIn"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY" From="1" To="0.8" Duration="00:00:00.300">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <PowerEase EasingMode="EaseIn"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX" From="1" To="0.8" Duration="00:00:00.300">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <PowerEase EasingMode="EaseIn"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </i:ControlStoryboardAction.Storyboard>
+                                        </i:ControlStoryboardAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </Border>
