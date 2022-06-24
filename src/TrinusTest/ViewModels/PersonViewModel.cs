@@ -84,6 +84,29 @@ namespace TrinusTest.ViewModels
             }
         }
 
+        public PersonType PersonType
+        {
+            get => Model!.PersonType;
+            set
+            {
+                if(Model?.PersonType != null)
+                {
+                    if (value != Model?.PersonType)
+                    {
+                        Model!.PersonType = value;
+                        if (value == PersonType.Legal)
+                        {                        
+                            Ssn = null;
+                        }
+                        else if (value == PersonType.Natural)
+                        {;
+                            Ssn = null;
+                        }
+                    }
+                }
+            }
+        }
+
         protected override void OnValidation()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -98,10 +121,10 @@ namespace TrinusTest.ViewModels
             {
                 ValidationErrors.Add(nameof(Ssn), "Preencha seu CPF");
             }
-            else if(!Ssn.IsValidCPF())
-            {
-                ValidationErrors.Add(nameof(Ssn), "Por favor insira um CPF válido");
-            }
+            //else if(!Ssn.IsValidCPF())
+            //{
+            //    ValidationErrors.Add(nameof(Ssn), "Por favor insira um CPF válido");
+            //}
         }
 
         public PersonViewModel()

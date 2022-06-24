@@ -16,6 +16,8 @@ namespace TrinusTest.Models.People
         public string? Ssn { get; set; }
 
         public AgeIndentifier AgeIndentifier { get; set; }
+
+        public PersonType PersonType { get; set; }
     }
 
     public enum AgeIndentifier
@@ -28,5 +30,13 @@ namespace TrinusTest.Models.People
         ADULT,
         [Description("IDOSO")]
         OLD
+    }
+
+    public enum PersonType
+    {
+        [Description("PESSOAL JURIDICA")]
+        Natural = 0,
+        [Description("PESSOA LEGAL")]
+        Legal
     }
 }

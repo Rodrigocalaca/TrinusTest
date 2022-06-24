@@ -17,6 +17,8 @@
         <cv:CapitalNameConverter x:Key="capitalNameConverter"/>
         <cv:CpfConverter x:Key="cpfConverter"/>
         <cv:CnpjConverter x:Key="cnpjConverter"/>
+        <cv:EnumBooleanConverter x:Key="enumBooleanConverter"/>
+        
         <!--#region RegisterButton-->
         <Style x:Key="RegisterButton" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="#F9F5FF"/>
@@ -213,7 +215,8 @@
                     </TextBlock.RenderTransform>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <RadioButton x:Name="cpfRadioButton" Content="CPF" IsChecked="True" VerticalAlignment="Center" Margin="8 0 4 4" Style="{StaticResource RadioButton}">
+                    <RadioButton x:Name="cpfRadioButton" Content="CPF" VerticalAlignment="Center" Margin="8 0 4 4" Style="{StaticResource RadioButton}"
+                                 IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Natural}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger SourceName="cpfRadioButton" EventName="Click">
                                 <i:ControlStoryboardAction>
@@ -225,11 +228,13 @@
                                     </i:ControlStoryboardAction.Storyboard>
                                 </i:ControlStoryboardAction>
                                 <i:ChangePropertyAction TargetName="cpfLabel" PropertyName="Text" Value="CPF"/>
-                                <i:ChangePropertyAction TargetName="TextBoxSsn" PropertyName="Text" Value="{Binding CurrentUser.Ssn, Converter={StaticResource cpfConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                                <i:ChangePropertyAction TargetName="TextBoxCPF" PropertyName="Visibility" Value="Visible"/>
+                                <i:ChangePropertyAction TargetName="TextBoxCNPJ" PropertyName="Visibility" Value="Collapsed"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
-                    <RadioButton x:Name="cnpjRadioButton" Content="CNPJ" IsChecked="False" VerticalAlignment="Center" Margin="0 0 0 4" Style="{StaticResource RadioButton}">
+                    <RadioButton x:Name="cnpjRadioButton" Content="CNPJ" VerticalAlignment="Center" Margin="0 0 0 4" Style="{StaticResource RadioButton}"
+                                 IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Legal}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger SourceName="cnpjRadioButton" EventName="Click">
                                 <i:ControlStoryboardAction>
@@ -241,16 +246,18 @@
                                     </i:ControlStoryboardAction.Storyboard>
                                 </i:ControlStoryboardAction>
                                 <i:ChangePropertyAction TargetName="cpfLabel" PropertyName="Text" Value="CNPJ"/>
-                                <i:ChangePropertyAction TargetName="TextBoxSsn" PropertyName="Text" Value=""/>
-                                <i:ChangePropertyAction TargetName="TextBoxSsn" PropertyName="Text" Value="{Binding CurrentUser.Ssn, Converter={StaticResource cnpjConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                                <i:ChangePropertyAction TargetName="TextBoxCNPJ" PropertyName="Visibility" Value="Visible"/>
+                                <i:ChangePropertyAction TargetName="TextBoxCPF" PropertyName="Visibility" Value="Collapsed"/>
+
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
                 </StackPanel>
             </Grid>
-            <Border Background="White" CornerRadius="8">
-                <TextBox x:Name="TextBoxSsn" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cpfConverter}, ValidatesOnDataErrors=True}"/>
-            </Border>
+            <Grid>
+                <TextBox x:Name="TextBoxCPF" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cpfConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible"/>
+                <TextBox x:Name="TextBoxCNPJ" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cnpjConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"/>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0 17 0 0">
             <Button Style="{StaticResource RegisterButton}" local:AttachedProperties.CornerRadius="8" IsEnabled="True" Command="{Binding RegisterCommand}">
