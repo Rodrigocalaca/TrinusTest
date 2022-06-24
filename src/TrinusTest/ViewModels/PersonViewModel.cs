@@ -119,12 +119,12 @@ namespace TrinusTest.ViewModels
             }
             if (string.IsNullOrEmpty(Ssn))
             {
-                ValidationErrors.Add(nameof(Ssn), "Preencha seu CPF");
+                ValidationErrors.Add(nameof(Ssn), "Preencha o campo corretamente");
             }
-            //else if(!Ssn.IsValidCPF())
-            //{
-            //    ValidationErrors.Add(nameof(Ssn), "Por favor insira um CPF válido");
-            //}
+            else if (!Ssn.IsValidSsn())
+            {
+                ValidationErrors.Add(nameof(Ssn), "Por favor insira um número válido");
+            }
         }
 
         public PersonViewModel()

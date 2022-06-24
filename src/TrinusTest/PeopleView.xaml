@@ -187,7 +187,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="96"/>
-            <ColumnDefinition Width="128"/>
+            <ColumnDefinition Width="165"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="0 0 8 0">
             <TextBlock Style="{StaticResource TextSubtitles}" Margin="0 0 0 4">Nome</TextBlock>
@@ -204,7 +204,7 @@
         <StackPanel Grid.Column="2" Margin="8 0 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="56"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" x:Name="cpfLabel" Style="{StaticResource TextSubtitles}" Margin="0 0 0 4" Text="CPF" RenderTransformOrigin="0.5, 0.5" Opacity="1">
@@ -214,8 +214,8 @@
                         </TransformGroup>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <RadioButton x:Name="cpfRadioButton" Content="CPF" VerticalAlignment="Center" Margin="8 0 4 4" Style="{StaticResource RadioButton}"
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <RadioButton x:Name="cpfRadioButton" Content="CPF" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8 0 4 4" Style="{StaticResource RadioButton}"
                                  IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Natural}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger SourceName="cpfRadioButton" EventName="Click">
@@ -233,7 +233,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
-                    <RadioButton x:Name="cnpjRadioButton" Content="CNPJ" VerticalAlignment="Center" Margin="0 0 0 4" Style="{StaticResource RadioButton}"
+                    <RadioButton x:Name="cnpjRadioButton" Content="CNPJ" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 0 4" Style="{StaticResource RadioButton}"
                                  IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Legal}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger SourceName="cnpjRadioButton" EventName="Click">
@@ -248,15 +248,14 @@
                                 <i:ChangePropertyAction TargetName="cpfLabel" PropertyName="Text" Value="CNPJ"/>
                                 <i:ChangePropertyAction TargetName="TextBoxCNPJ" PropertyName="Visibility" Value="Visible"/>
                                 <i:ChangePropertyAction TargetName="TextBoxCPF" PropertyName="Visibility" Value="Collapsed"/>
-
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
                 </StackPanel>
             </Grid>
             <Grid>
-                <TextBox x:Name="TextBoxCPF" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cpfConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible"/>
-                <TextBox x:Name="TextBoxCNPJ" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cnpjConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"/>
+                <TextBox x:Name="TextBoxCPF" MaxLength="14" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cpfConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible"/>
+                <TextBox x:Name="TextBoxCNPJ" MaxLength="18" Text="{Binding CurrentUser.Ssn, Converter={StaticResource cnpjConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"/>
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0 17 0 0">

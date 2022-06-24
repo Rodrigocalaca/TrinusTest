@@ -35,10 +35,10 @@ namespace TrinusTest.ViewModels
             RegisterCommand = new RelayCommand(Register);
             EditCommand = new RelayCommand<PersonViewModel>(Edit);
             DeleteCommand = new RelayCommand<PersonViewModel>(Delete);
-            Users.Add(new PersonViewModel {Name = "Rodrigo", Age = 21, Ssn = "14875263694", IsNewEntry = false });
-            Users.Add(new PersonViewModel { Name = "Murilo", Age = 11, Ssn = "17594456734", IsNewEntry = false });
-            Users.Add(new PersonViewModel { Name = "Pietro", Age = 67, Ssn = "43733010930", IsNewEntry = false });
-            Users.Add(new PersonViewModel { Name = "Arthur", Age = 18, Ssn = "50252542649", IsNewEntry = false });
+            //Users.Add(new PersonViewModel {Name = "Rodrigo", Age = 21, Ssn = "14875263694", IsNewEntry = false });
+            //Users.Add(new PersonViewModel { Name = "Murilo", Age = 11, Ssn = "17594456734", IsNewEntry = false });
+            //Users.Add(new PersonViewModel { Name = "Pietro", Age = 67, Ssn = "43733010930", IsNewEntry = false });
+            //Users.Add(new PersonViewModel { Name = "Arthur", Age = 18, Ssn = "50252542649", IsNewEntry = false });
 
         }
 
@@ -79,7 +79,11 @@ namespace TrinusTest.ViewModels
 
         public void Delete(PersonViewModel person)
         {
+            CurrentUser = new PersonViewModel();
+            CurrentUser.IsEditing = false;
             Users.Remove(person);
+            OnPropertyChanged(nameof(ActionLabel));
+
         }
     }
 }
