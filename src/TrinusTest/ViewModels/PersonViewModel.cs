@@ -89,20 +89,11 @@ namespace TrinusTest.ViewModels
             get => Model!.PersonType;
             set
             {
-                if(Model?.PersonType != null)
+                if (Model?.PersonType != value)
                 {
-                    if (value != Model?.PersonType)
-                    {
-                        Model!.PersonType = value;
-                        if (value == PersonType.Legal)
-                        {                        
-                            Ssn = null;
-                        }
-                        else if (value == PersonType.Natural)
-                        {;
-                            Ssn = null;
-                        }
-                    }
+                    Model!.PersonType = value;
+                    Ssn = null;
+                    OnPropertyChanged();
                 }
             }
         }

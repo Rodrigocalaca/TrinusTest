@@ -18,7 +18,7 @@
         <cv:CpfConverter x:Key="cpfConverter"/>
         <cv:CnpjConverter x:Key="cnpjConverter"/>
         <cv:EnumBooleanConverter x:Key="enumBooleanConverter"/>
-        
+
         <!--#region RegisterButton-->
         <Style x:Key="RegisterButton" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="#F9F5FF"/>
@@ -50,7 +50,7 @@
             </Setter>
         </Style>
         <!--#endregion-->
-        
+
         <!--#region Texts-->
         <Style x:Key="TextSubtitles" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
@@ -177,7 +177,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
     <Grid DataContext="{StaticResource mainViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="58"/>
@@ -207,7 +207,29 @@
                     <ColumnDefinition Width="56"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" x:Name="cpfLabel" Style="{StaticResource TextSubtitles}" Margin="0 0 0 4" Text="CPF" RenderTransformOrigin="0.5, 0.5" Opacity="1">
+                <TextBlock Grid.Column="0" x:Name="cpfLabel" Style="{StaticResource TextSubtitles}" Margin="0 0 0 4" RenderTransformOrigin="0.5, 0.5" Opacity="1">
+                    <i:Interaction.Triggers>
+                        <i:PropertyChangedTrigger Binding="{Binding CurrentUser.PersonType}">
+                            <i:ControlStoryboardAction>
+                                <i:ControlStoryboardAction.Storyboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" 
+                                                             BeginTime="0"
+                                                             Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="00:00:00.100"/>
+                                        <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" 
+                                                             BeginTime="00:00:00.100"
+                                                             Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="00:00:00.100"/>
+                                    </Storyboard>
+                                </i:ControlStoryboardAction.Storyboard>
+                            </i:ControlStoryboardAction>
+                        </i:PropertyChangedTrigger>
+                        <i:DataTrigger Binding="{Binding CurrentUser.PersonType}" Value="{x:Static enums:PersonType.Natural}">
+                            <i:ChangePropertyAction PropertyName="Text" Value="CPF"/>
+                        </i:DataTrigger>
+                        <i:DataTrigger Binding="{Binding CurrentUser.PersonType}" Value="{x:Static enums:PersonType.Legal}">
+                            <i:ChangePropertyAction PropertyName="Text" Value="CNPJ"/>
+                        </i:DataTrigger>
+                    </i:Interaction.Triggers>
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
@@ -218,37 +240,19 @@
                     <RadioButton x:Name="cpfRadioButton" Content="CPF" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8 0 4 4" Style="{StaticResource RadioButton}"
                                  IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Natural}}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger SourceName="cpfRadioButton" EventName="Click">
-                                <i:ControlStoryboardAction>
-                                    <i:ControlStoryboardAction.Storyboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="00:00:00.200"/>
-                                            <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="00:00:00.200"/>
-                                        </Storyboard>
-                                    </i:ControlStoryboardAction.Storyboard>
-                                </i:ControlStoryboardAction>
-                                <i:ChangePropertyAction TargetName="cpfLabel" PropertyName="Text" Value="CPF"/>
+                            <i:DataTrigger Binding="{Binding CurrentUser.PersonType}" Value="{x:Static enums:PersonType.Natural}">
                                 <i:ChangePropertyAction TargetName="TextBoxCPF" PropertyName="Visibility" Value="Visible"/>
                                 <i:ChangePropertyAction TargetName="TextBoxCNPJ" PropertyName="Visibility" Value="Collapsed"/>
-                            </i:EventTrigger>
+                            </i:DataTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
                     <RadioButton x:Name="cnpjRadioButton" Content="CNPJ" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 0 4" Style="{StaticResource RadioButton}"
                                  IsChecked="{Binding CurrentUser.PersonType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enums:PersonType.Legal}}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger SourceName="cnpjRadioButton" EventName="Click">
-                                <i:ControlStoryboardAction>
-                                    <i:ControlStoryboardAction.Storyboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="00:00:00.200"/>
-                                            <DoubleAnimation Storyboard.Target="{Binding ElementName=cpfLabel}" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="00:00:00.200"/>
-                                        </Storyboard>
-                                    </i:ControlStoryboardAction.Storyboard>
-                                </i:ControlStoryboardAction>
-                                <i:ChangePropertyAction TargetName="cpfLabel" PropertyName="Text" Value="CNPJ"/>
+                            <i:DataTrigger Binding="{Binding CurrentUser.PersonType}" Value="{x:Static enums:PersonType.Legal}">
                                 <i:ChangePropertyAction TargetName="TextBoxCNPJ" PropertyName="Visibility" Value="Visible"/>
                                 <i:ChangePropertyAction TargetName="TextBoxCPF" PropertyName="Visibility" Value="Collapsed"/>
-                            </i:EventTrigger>
+                            </i:DataTrigger>
                         </i:Interaction.Triggers>
                     </RadioButton>
                 </StackPanel>
@@ -280,7 +284,6 @@
                                 UserSsn="{Binding Ssn}"
                                 AgeBadge="{Binding AgeIndentifier}">
                             </c:UserCard>
-                            
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
